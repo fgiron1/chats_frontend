@@ -1,11 +1,11 @@
 import ChatWindow from "../components/ChatWindow";
+import ChatInput from "../components/ChatInput";
 
-function Chat(props){
+function Chat(){
     
     return (
-        <ChatWindow>
-
-        </ChatWindow>
+            <ChatWindow>
+            </ChatWindow>
     );
 }
 
