@@ -17,15 +17,15 @@ function ChatInput(){
         </div>
     );
 
-    async function sendMsg(msg){
 
-        //Enviar el mensaje
+    async function handleSubmit(event){
+
+        //Llamar a endpoint con el mensaje
 
         //Se pone la caja vacía de nuevo
         setInputMsg("");
-    }
 
-    function handleInputChange(event) {
+        //Le pasa a ChatMessages un nuevo mensaje
 
     }
 
