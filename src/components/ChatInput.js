@@ -10,8 +10,19 @@ function ChatInput() {
                 <input className='button is-flex' type="submit" value="Enviar" />
             </form>
         </div>
-
     );
+
+
+    async function handleSubmit(event){
+
+        //Llamar a endpoint con el mensaje
+
+        //Se pone la caja vacía de nuevo
+        setInputMsg("");
+
+        //Le pasa a ChatMessages un nuevo mensaje
+
+    }
 
 }
 
