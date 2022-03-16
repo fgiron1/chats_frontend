@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { Component } from "react";
 
-function Message(){
+class Message extends Component {
 
-    const [message, setMessage] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non dui eros. Vestibulum vitae arcu nunc. Donec non auctor orci. Integer non purus fermentum erat dapibus tincidunt quis ac nisl. ");
+    constructor(props){
+        super(props);
+        this.message = props.message
+    }
     
-    return(
+    render(){
+        return(
 
-        <span className="tag is-link is-light is-medium">
-            {message}
-        </span>
-
-    );
+            <span className="tag is-link is-light is-medium">
+                {this.message}
+            </span>
+        )
+    }
 
 }
-
 
 export default Message;
