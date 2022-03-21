@@ -14,7 +14,7 @@ function App() {
 
         </Chat>
       </div>
-    <ReactQueryDevtools initialIsOpen/>
+      <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   );
 }

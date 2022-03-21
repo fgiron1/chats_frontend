@@ -16,7 +16,7 @@ function UploadFile(){
 	return(
 
         //Esto dentro de un modal
-   <div>
+   		<div>
 			<input type="file" name="file" onChange={changeHandler} />
 			{isSelected ? (
 				<div>
