@@ -4,11 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/chats_backend/venv
-/chats_backend/bin
-/chats_backend/lib
-/chats_backend/lib64
-/chats_backend/chats_backend/__pycache__
+/chats_backend/v
 
 # testing
 /coverage
