@@ -1,23 +1,24 @@
-import { useState } from "react"
-import { useEffect } from "react/cjs/react.production.min";
-import ChatInput from "./ChatInput";
-import ChatMessages from "./ChatMessages";
+import {useMembers} from "../service/hooks"
 
-function ChatWindow(props) {
+function MemberList(props) {
 
-    //This may have state in the future. As of now, this component is not handling any data
-    //Its children do, and they're responsible for fetching their own data.
+    const {
+        members,
+        errorMember,
+        fetchNextMember,
+        hasNextMember,
+        isFetchingMember,
+        isFetchingNextMember,
+        statusMember
+    } = useMembers(props.roomID, props.memberID);
 
     return (
 
         <div className="columns is-flex is-centered">
-            <div className="box column is-vcentered is-three-quarters mt-5">
-                <ChatMessages props={props}></ChatMessages>
-                <ChatInput></ChatInput>
-            </div>
+            
         </div>
 
     );
 }
 
-export default ChatWindow;
+export default MemberList;

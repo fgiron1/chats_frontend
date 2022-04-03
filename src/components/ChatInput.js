@@ -1,6 +1,8 @@
 
 function ChatInput() {
 
+    
+
     return (
 
         <div className='column is-four-fifths is-flex is-flex-direction-row'>

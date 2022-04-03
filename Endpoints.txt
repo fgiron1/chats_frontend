@@ -38,7 +38,8 @@ DEVUELVE: Un json tal que así:
 
 GET /room/{room_id}
 Descripción: Devuelve la sala de chat asociada a ese id
-DEVUELVE: Un json con un objeto room.
+DEVUELVE: Un json con un objeto room. El objeto tiene una lista de integrantes
+asociada
 
 POST /room
 Descripción: Manda una petición al servidor para solicitar la creación de una nueva sala de chat. El backend

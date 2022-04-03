@@ -1,14 +1,18 @@
-import ChatWindow from "../components/MemberList";
 import { useQueryClient } from "react-query";
-import { useState } from "react" 
+import ChatMessages from "../components/ChatMessages";
+import MemberList from "../components/MemberList";
+import ChatInput from "../components/ChatInput";
 
 function Chat(){
     
     const queryClient = useQueryClient();
-    const [props, setProps] = useState([]);
 
     return (
-            <ChatWindow props = {props}></ChatWindow>
+        <div>
+            <ChatInput></ChatInput>
+            <ChatMessages></ChatMessages>
+            <MemberList></MemberList>
+         </div>
     );
 }
 
