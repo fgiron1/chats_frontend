@@ -5,11 +5,28 @@ import {useMessages} from "../service/hooks"
 function ChatMessages(props) {
 
     //MOCK DATA. El parámetro real que representa la lista
-    //de 
+    //de mensajes es messages
     
     const [messageList, setMsgList] = useState([{
         id: 1,
-        content: "Hello world"
+        roomID: 23,
+        authorID: 351,
+        posting_timestamp: Date.now(),
+        content: "I am the first message"
+    },
+    {
+        id: 2,
+        roomID: 23,
+        authorID: 351,
+        posting_timestamp: Date.now(),
+        content: "This is the second message"
+    },
+    {
+        id: 2,
+        roomID: 23,
+        authorID: 351,
+        posting_timestamp: Date.now(),
+        content: "This is the loooooooooo ooooooooooooooo so asd sf sag skj saksihfsh a safj.. AS SDJHS HKkjsd akjfn ajk ooooooooooooo oooooooo ooooooooo oooooooo ooooong message"
     }]);
 
     const {
@@ -22,20 +39,20 @@ function ChatMessages(props) {
         statusMessage
     } = useMessages(props.roomID, props.memberID);
 
-    //Custom hook because the functionality of fetching room members and a room's messages
-    //will probably get reused in the future.
-
     return (
-        <div className="content is-flex is-flex-direction-column is-flex-wrap-wrap">
-            {messageList.map(({ message }) => (
-                <MessageView key={message.id} id={message.id} content={message.content} />
+        <div className="content">
+            {messageList.map(( message ) => (
+                <MessageView key={message.id}
+                roomID = {message.roomID}
+                authorID = {message.authorID}
+                posting_timestamp = {message.posting_timestamp}
+                id={message.id}
+                content={message.content} />
             ))}
         </div>
     );
 
 
 }
-
-
 
 export default ChatMessages;

@@ -1,6 +1,7 @@
 import { Component } from "react";
 
-//This will remain written with class syntax, as it's just a data class.
+//This will remain written with class syntax, as it's just a container for 
+//state and representation logic
 
 class MessageView extends Component {
 
@@ -15,11 +16,12 @@ class MessageView extends Component {
     
     render(){
         return(
-
-            <span className="tag is-link is-light is-medium">
-                {this.content}
-                {this.id}
-            </span>
+            <div className="columns">
+                <figure className="image is-48x48 is-rounded">
+                    <img src="https://bulma.io/images/placeholders/48x48.png"/>
+                </figure>   
+                <span className="column is-primary">{this.content}</span>
+            </div>
         )
     }
 
