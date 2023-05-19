@@ -1,0 +1,74 @@
+Listado endpoints:
+
+POST /msg/
+Descripción: Envía un mensaje a una sala, asociado a la ID del usuario que lo envía.
+Parametros: author_id, room_id, message, media
+
+DEVUELVE: El mensaje recién posteado
+
+GET /msg/{room_id}
+Descripción: Obtiene los últimos 50 mensajes de una sala por defecto. Si se desean recuperar más, se puede especificar un
+rango de fechas, o bien, en un parámetro especificar cuantos mensajes se debe traer en total. Para traer todos los mensajes
+de la sala, el parámetro amount debe estar a -1. Para traer el mensaje más reciente de la sala, se debe de especificar el valor
+latest a true. De ser así, ninguno de los otros parámetros debe tener un valor.
+
+Parámetros: room_id, startDatetime, endDatetime, amount, latest
+
+DEVUELVE: Un json tal que así:
+
+"{
+    "amount": 57
+    //otros metadatos
+    content:[
+        
+        {
+            "author_id" : 17,
+            "room_id" : 5,
+            "message" : "que hablas",
+            "media" : BYTES,
+            "post_datetime" : 2022-04-01T15:32:04.184
+        },
+        
+        .
+        .
+        .
+
+    ]
+}"
+
+GET /room/{room_id}
+Descripción: Devuelve la sala de chat asociada a ese id
+DEVUELVE: Un json con un objeto room. El objeto tiene una lista de integrantes
+asociada
+
+POST /room
+Descripción: Manda una petición al servidor para solicitar la creación de una nueva sala de chat. El backend
+             crea el nombre de la sala proceduralmente.
+Parámetros: creator_id, password (opcional), salt (optional)
+
+DEVUELVE: JSON con room_id, creator_id, name
+
+
+TODO: Añadir sistema de autenticación de Django para los endpoints (SessionAuthentication) Endpoint de registro e inicio de sesión.
+
+Modelo de datos:
+
+Los usuarios podrán registrar una cuenta con nombre de usuario y contraseña. Las cuentas sin uso tras 30 días serán desactivadas.
+Los usuarios registrados podrán crear salas de chat, que además de tener un id único, tendrán un nombre único. Las salas pueden ser públicas o privadas.
+Las salas privadas tienen un único creador, quien le pone la contraseña a la sala que el resto de usuarios deberán usar para entrar.
+Los usuarios podrán unirse a las salas de chat y escribir mensajes, que el resto verán en tiempo real. Cada mensaje está relacionado con
+su autor y la sala en la que se ha escrito. Un mensaje fuera de una sala de chat o escrito por un autor desconocido no tiene cabida en el sistema.
+Los mensajes podrán tener contenido multimedia de hasta 10 MB de peso.
+
+User: id, username, password, salt, creation_datetime, is_active. PK: id
+Room: id, creator_id, name, password (NULLABLE), salt (NULLABLE). PK: id
+Message: author_id, room_id, message, media (bytes), post_datetime PK: author_id + room_id. FK: author_id, room_id
+
+
+
+ENDPOINTS FRONT:
+
+GET room/{room_name}
+Descripción: Este endpoint devuelve la vista de una sala de chat, llama a los endpoints GET /room/{room_id} y GET /msg/{room_id} del back para construir la vista.
+Parámetros: room_id, user_id -> El usuario que pretende entrar. Pasa toda la información necesaria que el back necesita
+del usuario para autenticarlo y poder hacer las llamadas a los endpoints que construyen la vista (lista mensajes y lista de miembros de la sala).
